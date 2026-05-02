@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://hole_scene"]
+
+[ext_resource type="Script" path="res://Mole.gd" id="1_mole"]
+
+[sub_resource type="CircleShape2D" id="CircleShape_mole"]
+radius = 25.0
+
+[node name="Hole" type="Node2D"]
+script = ExtResource("1_mole")
+
+[node name="HoleVisual" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+color = Color(0.4, 0.26, 0.13, 1)
+
+[node name="Mole" type="Node2D" parent="."]
+
+[node name="MoleSprite" type="ColorRect" parent="Mole"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Area2D" type="Area2D" parent="Mole"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mole/Area2D"]
+shape = SubResource("CircleShape_mole")

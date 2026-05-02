@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cgs68hs6t84hr"]
+
+[ext_resource type="Script" uid="uid://c60n6n2spq1cc" path="res://GameManager.gd" id="1_gm"]
+[ext_resource type="PackedScene" path="res://Hole.tscn" id="2_hole"]
+
+[node name="Node2D" type="Node2D" unique_id=1370832611]
+script = ExtResource("1_gm")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1537896489]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GameField" type="Node2D" parent="." unique_id=1360298826]
+position = Vector2(120, 100)
+
+[node name="Hole1" parent="GameField" unique_id=555056793 instance=ExtResource("2_hole")]
+
+[node name="Hole2" parent="GameField" unique_id=1858839127 instance=ExtResource("2_hole")]
+position = Vector2(150, 0)
+
+[node name="Hole3" parent="GameField" unique_id=778049504 instance=ExtResource("2_hole")]
+position = Vector2(300, 0)
+
+[node name="Hole4" parent="GameField" unique_id=1616468237 instance=ExtResource("2_hole")]
+position = Vector2(0, 150)
+
+[node name="Hole5" parent="GameField" unique_id=516691495 instance=ExtResource("2_hole")]
+position = Vector2(150, 150)
+
+[node name="Hole6" parent="GameField" unique_id=1118625677 instance=ExtResource("2_hole")]
+position = Vector2(300, 150)
+
+[node name="Hole7" parent="GameField" unique_id=1923603984 instance=ExtResource("2_hole")]
+position = Vector2(0, 300)
+
+[node name="Hole8" parent="GameField" unique_id=1494012395 instance=ExtResource("2_hole")]
+position = Vector2(150, 300)
+
+[node name="Hole9" parent="GameField" unique_id=1533145454 instance=ExtResource("2_hole")]
+position = Vector2(300, 300)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=695652767]
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=1077800116]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="UI" unique_id=1160729686]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 70.0
+offset_right = 100.0
+offset_bottom = 110.0
+grow_horizontal = 2
+text = "Time: 30"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="UI" unique_id=1586342609]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -30.0
+offset_right = 80.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+
+[node name="GameOverLabel" type="Label" parent="UI" unique_id=1203456517]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over!
+Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioHit" type="AudioStreamPlayer" parent="." unique_id=2097383754]
