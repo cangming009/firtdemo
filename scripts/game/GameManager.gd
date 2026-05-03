@@ -8,10 +8,10 @@ var state: GameState = GameState.IDLE
 var score: int = 0
 var time_remaining: float = 0.0
 
-@export var game_duration: float = 30.0
-@export var mole_spawn_interval_min: float = 0.5
-@export var mole_spawn_interval_max: float = 1.5
-@export var visible_time: float = 1.5
+var game_duration: float = 30.0
+var mole_spawn_interval_min: float = 0.5
+var mole_spawn_interval_max: float = 1.5
+var visible_time: float = 1.5
 
 @onready var score_label: Label = $UI/ScoreLabel
 @onready var timer_label: Label = $UI/TimerLabel
