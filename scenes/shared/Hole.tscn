@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://hole_scene"]
 
-[ext_resource type="Script" path="res://Mole.gd" id="1_mole"]
+[ext_resource type="Script" path="res://scripts/game/Mole.gd" id="1_mole"]
 
 [sub_resource type="CircleShape2D" id="CircleShape_mole"]
 radius = 25.0

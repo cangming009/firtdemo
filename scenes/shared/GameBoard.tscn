@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dgameboard123"]
+
+[ext_resource type="PackedScene" uid="uid://hole_scene" path="res://scenes/shared/Hole.tscn" id="1_hole"]
+
+[node name="GameBoard" type="Node2D"]
+position = Vector2(120, 100)
+
+[node name="Hole1" parent="." instance=ExtResource("1_hole")]
+
+[node name="Hole2" parent="." instance=ExtResource("1_hole")]
+position = Vector2(150, 0)
+
+[node name="Hole3" parent="." instance=ExtResource("1_hole")]
+position = Vector2(300, 0)
+
+[node name="Hole4" parent="." instance=ExtResource("1_hole")]
+position = Vector2(0, 150)
+
+[node name="Hole5" parent="." instance=ExtResource("1_hole")]
+position = Vector2(150, 150)
+
+[node name="Hole6" parent="." instance=ExtResource("1_hole")]
+position = Vector2(300, 150)
+
+[node name="Hole7" parent="." instance=ExtResource("1_hole")]
+position = Vector2(0, 300)
+
+[node name="Hole8" parent="." instance=ExtResource("1_hole")]
+position = Vector2(150, 300)
+
+[node name="Hole9" parent="." instance=ExtResource("1_hole")]
+position = Vector2(300, 300)

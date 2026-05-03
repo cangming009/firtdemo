@@ -3,9 +3,13 @@ extends Node
 var music_vol: float = 0.8
 var sfx_vol: float = 1.0
 
-@onready var sfx_player: AudioStreamPlayer = $SFXPlayer
+var sfx_player: AudioStreamPlayer
 
 func _ready() -> void:
+    sfx_player = AudioStreamPlayer.new()
+    sfx_player.name = "SFXPlayer"
+    add_child(sfx_player)
+
     var sm = get_node_or_null("/root/ScoreManager")
     if sm:
         music_vol = sm.get_music_vol()
