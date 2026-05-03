@@ -115,15 +115,6 @@ func spawn_explosion() -> void:
 		tween.tween_property(particle, "rotation", angle + TAU, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		tween.tween_property(particle, "scale", Vector2(0.2, 0.2), 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 
-	var viewport = get_viewport()
-	var original_pos = viewport.get_camera_2d_position()
-	var shake_tween = create_tween()
-	shake_tween.set_parallel(true)
-	shake_tween.tween_property(viewport, "position", original_pos + Vector2(4, -3), 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	shake_tween.tween_property(viewport, "position", original_pos + Vector2(-4, 3), 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	shake_tween.tween_property(viewport, "position", original_pos + Vector2(3, -2), 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	shake_tween.tween_property(viewport, "position", original_pos, 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-
 	await get_tree().create_timer(0.4).timeout
 	explosion.queue_free()
 
