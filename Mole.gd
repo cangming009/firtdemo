@@ -9,7 +9,7 @@ enum MoleState { HIDDEN, RISING, VISIBLE, HIDING, WHACKED }
 var state: MoleState = MoleState.HIDDEN
 var is_whacked: bool = false
 
-@onready var mole_sprite: ColorRect = $Mole/MoleSprite
+@onready var mole_sprite: ColorRect = $Mole/MoleBody
 
 signal mole_whacked
 
@@ -90,20 +90,39 @@ func spawn_explosion() -> void:
 	explosion.global_position = mole_sprite.global_position
 	add_child(explosion)
 
-	var colors = [Color(1, 0.5, 0, 1), Color(1, 0.8, 0, 1), Color(1, 1, 0, 1), Color(1, 0.3, 0, 1)]
+	var colors = [
+		Color(1, 0.85, 0, 1),
+		Color(1, 0.6, 0, 1),
+		Color(1, 1, 0.9, 1),
+		Color(1, 0.85, 0, 1),
+		Color(1, 0.6, 0, 1),
+		Color(1, 1, 0.9, 1),
+		Color(1, 0.85, 0, 1),
+		Color(1, 0.6, 0, 1)
+	]
 	for i in 8:
 		var particle = ColorRect.new()
-		particle.color = colors[i % colors.size()]
-		particle.size = Vector2(12, 12)
-		particle.pivot_offset = Vector2(6, 6)
+		particle.color = colors[i]
+		particle.size = Vector2(14, 14)
+		particle.pivot_offset = Vector2(7, 7)
 		explosion.add_child(particle)
 
 		var angle = (i / 8.0) * TAU
 		var tween = create_tween()
 		tween.set_parallel(true)
-		tween.tween_property(particle, "position", Vector2(cos(angle) * 60, sin(angle) * 60), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-		tween.tween_property(particle, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-		tween.tween_property(particle, "scale", Vector2(0.1, 0.1), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tween.tween_property(particle, "position", Vector2(cos(angle) * 60, sin(angle) * 60), 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(particle, "modulate:a", 0.0, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tween.tween_property(particle, "rotation", angle + TAU, 0.35).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(particle, "scale", Vector2(0.2, 0.2), 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+
+	var viewport = get_viewport()
+	var original_pos = viewport.get_camera_2d_position()
+	var shake_tween = create_tween()
+	shake_tween.set_parallel(true)
+	shake_tween.tween_property(viewport, "position", original_pos + Vector2(4, -3), 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	shake_tween.tween_property(viewport, "position", original_pos + Vector2(-4, 3), 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	shake_tween.tween_property(viewport, "position", original_pos + Vector2(3, -2), 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	shake_tween.tween_property(viewport, "position", original_pos, 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
 	await get_tree().create_timer(0.4).timeout
 	explosion.queue_free()

@@ -17,4 +17,5 @@ func is_mole_visible() -> bool:
 	return mole.is_mole_visible()
 
 func _on_mole_whacked() -> void:
-	get_parent().get_parent().add_score(10)
+	var mole_pos = mole.global_position
+	get_parent().get_parent().add_score(10, mole_pos)
