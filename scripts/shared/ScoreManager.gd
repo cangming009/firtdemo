@@ -3,14 +3,17 @@ extends Node
 const SAVE_FILE := "user://whackamole_save.json"
 const MAX_SCORES_PER_LEVEL := 10
 
-var save_data: Dictionary = {
-    "levels": {},
-    "unlocked_level": 1,
-    "settings": {"music_vol": 0.8, "sfx_vol": 1.0}
-}
+var save_data: Dictionary
 
 func _ready() -> void:
     load_data()
+
+func _init() -> void:
+    save_data = {
+        "levels": {},
+        "unlocked_level": 1,
+        "settings": {"music_vol": 0.8, "sfx_vol": 1.0}
+    }
 
 func load_data() -> void:
     if FileAccess.file_exists(SAVE_FILE):
