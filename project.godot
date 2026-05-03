@@ -10,10 +10,17 @@ config_version=5
 
 [application]
 
-config/name="firtdemo"
+config/name="Whack-a-Mole"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+ScoreManager="*res://scripts/shared/ScoreManager.gd"
+AudioManager="*res://scripts/shared/AudioManager.gd"
+MenuManager="*res://scripts/menu/MenuManager.gd"
+LevelConfig="*res://scripts/shared/LevelConfig.gd"
 
 [physics]
 
