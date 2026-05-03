@@ -10,23 +10,22 @@ var state: MoleState = MoleState.HIDDEN
 var is_whacked: bool = false
 
 @onready var mole_sprite: ColorRect = $Mole/MoleSprite
-@onready var collision_shape: CollisionShape2D = $Mole/Area2D/CollisionShape2D
-@onready var hit_zone: Area2D = $Mole/Area2D
 
 signal mole_whacked
 
 func _ready() -> void:
 	print("[Mole] _ready called")
 	hide_mole_instant()
-	hit_zone.input_event.connect(_on_input_event)
 	print("[Mole] _ready done")
 
-func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	print("[Mole] _on_input_event: ", event)
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			if state == MoleState.VISIBLE and not is_whacked:
-				whack()
+				var mole_rect = mole_sprite.get_global_rect()
+				if mole_rect.has_point(event.global_position):
+					whack()
+					get_tree().root.push_input(event)
 
 func show_mole() -> void:
 	if state != MoleState.HIDDEN:
@@ -72,6 +71,8 @@ func whack() -> void:
 	is_whacked = true
 	state = MoleState.WHACKED
 
+	spawn_explosion()
+
 	var tween = create_tween()
 	if not tween:
 		push_error("[Mole] create_tween() failed in whack")
@@ -83,6 +84,29 @@ func whack() -> void:
 	await tween.finished
 	hide_mole_instant()
 	mole_whacked.emit()
+
+func spawn_explosion() -> void:
+	var explosion = Node2D.new()
+	explosion.global_position = mole_sprite.global_position
+	add_child(explosion)
+
+	var colors = [Color(1, 0.5, 0, 1), Color(1, 0.8, 0, 1), Color(1, 1, 0, 1), Color(1, 0.3, 0, 1)]
+	for i in 8:
+		var particle = ColorRect.new()
+		particle.color = colors[i % colors.size()]
+		particle.size = Vector2(12, 12)
+		particle.pivot_offset = Vector2(6, 6)
+		explosion.add_child(particle)
+
+		var angle = (i / 8.0) * TAU
+		var tween = create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(particle, "position", Vector2(cos(angle) * 60, sin(angle) * 60), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.tween_property(particle, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+		tween.tween_property(particle, "scale", Vector2(0.1, 0.1), 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+
+	await get_tree().create_timer(0.4).timeout
+	explosion.queue_free()
 
 func hide_mole_instant() -> void:
 	mole_sprite.position.y = 0.0

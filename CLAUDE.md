@@ -45,9 +45,9 @@ main.tscn (GameManager)
 
 ```
 HIDDEN ──show_mole()──▶ RISING ──tween done──▶ VISIBLE ──timer──▶ HIDING ──tween done──▶ HIDDEN
-                            │                      │
-                            │                      └──whack()──▶ WHACKED ──tween done──▶ HIDDEN
-                            └─ can be whacked in VISIBLE state
+							│                      │
+							│                      └──whack()──▶ WHACKED ──tween done──▶ HIDDEN
+							└─ can be whacked in VISIBLE state
 ```
 
 ## Godot API 版本约束
