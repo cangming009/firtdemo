@@ -41,7 +41,15 @@
       "Bash(git config *)",
       "Bash(git filter-branch *)",
       "Bash(git push *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git check-ignore *)",
+      "Bash(git worktree *)",
+      "Bash(git -C \"C:/Users/admin/Documents/game/firtdemo/.worktrees/game-architecture\" add scenes/menu/)",
+      "Bash(git -C C:/Users/admin/Documents/game/firtdemo/.worktrees/game-architecture commit -m ' *)",
+      "Bash(git -C \"C:/Users/admin/Documents/game/firtdemo/.worktrees/game-architecture\" add scripts/game/ scripts/shared/ scenes/game/ scenes/shared/ scenes/menu/ hit.wav)",
+      "Bash(git -C \"C:/Users/admin/Documents/game/firtdemo/.worktrees/game-architecture\" add project.godot main.tscn)",
+      "Bash(git *)",
+      "Bash(chmod +x *)"
     ]
   }
 }

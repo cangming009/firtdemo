@@ -2,7 +2,7 @@ extends Control
 
 @onready var score_list: VBoxContainer = $VBox/ScoreList
 @onready var level_filter: OptionButton = $VBox/LevelFilter
-@onready var back_button: Button = $BackButton
+@onready var back_button: Button = $VBox/BackButton
 
 var current_level: int = 0
 

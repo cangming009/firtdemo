@@ -2,7 +2,7 @@ extends Control
 
 @onready var music_slider: HSlider = $VBox/MusicContainer/MusicSlider
 @onready var sfx_slider: HSlider = $VBox/SFXContainer/SFXSlider
-@onready var back_button: Button = $BackButton
+@onready var back_button: Button = $VBox/BackButton
 
 func _ready() -> void:
     var sm = get_node_or_null("/root/ScoreManager")
