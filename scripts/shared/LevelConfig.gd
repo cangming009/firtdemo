@@ -1,4 +1,4 @@
-extends RefCounted
+extends Node
 
 class LevelData:
     var spawn_interval_min: float
@@ -6,7 +6,7 @@ class LevelData:
     var visible_time: float
     var game_duration: float
 
-    func _init(p_min: float, p_max: float, v_time: float, duration: float) -> void:
+    func _init(p_min: float = 1.0, p_max: float = 2.0, v_time: float = 1.5, duration: float = 30.0) -> void:
         spawn_interval_min = p_min
         spawn_interval_max = p_max
         visible_time = v_time
